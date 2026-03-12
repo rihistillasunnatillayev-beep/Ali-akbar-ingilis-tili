@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbol Musobaqalari - Professional Football Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #1565C0;
+            --accent-color: #FF6B35;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .navbar-custom {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-custom.scrolled {
+            padding: 10px 0;
+            background: rgba(0,0,0,0.95);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .competition-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .competition-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .competition-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .prize-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .stats-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .registration-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+        }
+
+        .footer-custom {
+            background: var(--dark-bg);
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .trophy-icon {
+            font-size: 4rem;
+            color: gold;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .leaderboard-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .leaderboard-table thead {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .rank-1 { background: linear-gradient(45deg, #FFD700, #FFA500); color: white; }
+        .rank-2 { background: linear-gradient(45deg, #C0C0C0, #808080); color: white; }
+        .rank-3 { background: linear-gradient(45deg, #CD7F32, #8B4513); color: white; }
+
+        .countdown-timer {
+            background: linear-gradient(135deg, var(--accent-color), #FF8C42);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .match-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .match-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .team-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .language-btn {
+            border: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 15px;
+            margin: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .language-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .language-btn.active {
+            background: var(--accent-color);
+        }
+
+        .vs-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="language-btn active" onclick="changeLanguage('uz')">UZ</button>
+        <button class="language-btn" onclick="changeLanguage('ru')">RU</button>
+        <button class="language-btn" onclick="changeLanguage('en')">EN</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-futbol"></i> FutbolPro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" data-lang="nav-home">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#competitions" data-lang="nav-competitions">Musobaqalar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#registration" data-lang="nav-registration">Ro'yxatdan o'tish</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#leaderboard" data-lang="nav-leaderboard">Reyting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#matches" data-lang="nav-matches">O'yinlar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-lang="hero-title">Futbol Musobaqalari</h1>
+            <p data-aos="fade-up" data-aos-delay="200" data-lang="hero-subtitle">Professional futbol turnirlari va katta mukofotlar</p>
+            <button class="btn btn-custom" data-aos="fade-up" data-aos-delay="400" onclick="scrollToSection('competitions')" data-lang="hero-btn">
+                Musobaqalarni ko'rish <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4" data-aos="fade-up">
+                    <div class="stats-card">
+                        <i class="fas fa-trophy trophy-icon mb-3"></i>
+                        <div class="stats-number" data-count="50">0</div>
+                        <h5 data-lang="stats-competitions">Musobaqalar</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stats-card">
+                        <i class="fas fa-users trophy-icon mb-3" style="color: var(--secondary-color);"></i>
+                        <div class="stats-number" data-count="10000">0</div>
+                        <h5 data-lang="stats-participants">Ishtirokchilar</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stats-card">
+                        <i class="fas fa-gift trophy-icon mb-3" style="color: var(--accent-color);"></i>
+                        <div class="stats-number" data-count="500000">0</div>
+                        <h5 data-lang="stats-prizes">Sovrinlar (so'm)</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stats-card">
+                        <i class="fas fa-gamepad trophy-icon mb-3" style="color: #9C27B0;"></i>
+                        <div class="stats-number" data-count="500">0</div>
+                        <h5 data-lang="stats-matches">O'yinlar</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section id="competitions" class="section-padding">
+        <div class="container">
+            <h2 class="text-center text-white mb-5" data-aos="fade-up">
+                <i class="fas fa-medal"></i> <span data-lang="competitions-title"></span>Faol Musobaqalar</span>
+            </h2>
+            
+            <div class="countdown-timer" data-aos="fade-up">
+                <i class="fas fa-clock"></i> <span data-lang="countdown-text">Keyingi musobaqagacha:</span> <span id="countdown">24:00:00</span>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 mb-4" data-aos="fade-up">
+                    <div class="competition-card">
+                        <div class="competition-header">
+                            <i class="fas fa-crown fa-3x mb-3"></i>
+                            <h3 data-lang="champions-league">Chempionlar Ligasi</h3>
+                            <div class="prize-amount">10,000,000 so'm</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" data-lang="champions-prize">1-o'rin uchun sovrin</h5>
+                            <p class="card-text" data-lang="champions-desc">Eng nufuzli futbol musobaqasi. Professional jamoalar uchun.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="champions-teams">32 ta jamoa</span></li>
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="champions-format">Guruh bosqichi + pley-off</span></li>
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="champions-referees">Xalqaro hakamlar</span></li>
+                            </ul>
+                            <button class="btn btn-primary w-100" onclick="registerCompetition('Chempionlar Ligasi')" data-lang="champions-btn">
+                                Ishtirok etish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="competition-card">
+                        <div class="competition-header">
+                            <i class="fas fa-fire fa-3x mb-3"></i>
+                            <h3 data-lang="premier-league">Oliy Liga</h3>
+                            <div class="prize-amount">5,000,000 so'm</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" data-lang="premier-prize">Milliy chempionat</h5>
+                            <p class="card-text" data-lang="premier-desc">O'zbekiston chempionatining eng yuqori divizioni.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="premier-teams">14 ta jamoa</span></li>
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="premier-rounds">26 tur</span></li>
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="premier-euro">Yevrokubok yo'llanmasi</span></li>
+                            </ul>
+                            <button class="btn btn-primary w-100" onclick="registerCompetition('Oliy Liga')" data-lang="premier-btn">
+                                Ishtirok etish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="competition-card">
+                        <div class="competition-header">
+                            <i class="fas fa-star fa-3x mb-3"></i>
+                            <h3 data-lang="cup-competition">Kubok Musobaqasi</h3>
+                            <div class="prize-amount">2,000,000 so'm</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" data-lang="cup-prize">Milliy kubok</h5>
+                            <p class="card-text" data-lang="cup-desc">Barcha divizion jamoalari ishtiroki.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="cup-teams">64 ta jamoa</span></li>
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="cup-format">Knockout tizimi</span></li>
+                                <li><i class="fas fa-check text-success"></i> <span data-lang="cup-surprises">Sensatsiyalar kutilmoqda</span></li>
+                            </ul>
+                            <button class="btn btn-primary w-100" onclick="registerCompetition('Kubok Musobaqasi')" data-lang="cup-btn">
+                                Ishtirok etish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="section-padding bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="registration-form" data-aos="fade-up">
+                        <h2 class="text-center mb-4">
+                            <i class="fas fa-user-plus"></i> <span data-lang="registration-title"></span>Musobaqaga Ro'yxatdan O'tish</span>
+                        </h2>
+                        <form id="registrationForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" data-lang="form-firstname">Ismingiz</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" data-lang="form-lastname">Familiyangiz</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" data-lang="form-phone">Telefon raqam</label>
+                                    <input type="tel" class="form-control" placeholder="+998901234567" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" data-lang="form-email">Email</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" data-lang="form-team">Jamoa nomi</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" data-lang="form-competition">Musobaqa turi</label>
+                                    <select class="form-select" required>
+                                        <option value="" data-lang="form-select">Tanlang...</option>
+                                        <option value="chempionlar">Chempionlar Ligasi</option>
+                                        <option value="oliy">Oliy Liga</option>
+                                        <option value="kubok">Kubok Musobaqasi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" data-lang="form-additional">Qo'shimcha ma'lumot</label>
+                                <textarea class="form-control" rows="3" data-lang="form-placeholder" placeholder="Jamoa haqida qisqacha ma'lumot..."></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-custom btn-lg" data-lang="form-submit">
+                                    <i class="fas fa-check-circle"></i> Ro'yxatdan o'tish
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="section-padding">
+        <div class="container">
+            <h2 class="text-center text-white mb-5" data-aos="fade-up">
+                <i class="fas fa-chart-line"></i> <span data-lang="leaderboard-title"></span>Reyting Jadvali</span>
+            </h2>
+            <div class="leaderboard-table" data-aos="fade-up">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th data-lang="table-rank">O'rin</th>
+                            <th data-lang="table-team">Jamoa</th>
+                            <th data-lang="table-matches">O'yinlar</th>
+                            <th data-lang="table-wins">G'alaba</th>
+                            <th data-lang="table-draw">Durang</th>
+                            <th data-lang="table-loss">Mag'lubiyat</th>
+                            <th data-lang="table-points">Ball</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rank-1">
+                            <td><i class="fas fa-trophy"></i> 1</td>
+                            <td><strong>FC Paxtakor</strong></td>
+                            <td>15</td>
+                            <td>12</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td><strong>38</strong></td>
+                        </tr>
+                        <tr class="rank-2">
+                            <td><i class="fas fa-medal"></i> 2</td>
+                            <td><strong>FC Bunyodkor</strong></td>
+                            <td>15</td>
+                            <td>10</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td><strong>33</strong></td>
+                        </tr>
+                        <tr class="rank-3">
+                            <td><i class="fas fa-award"></i> 3</td>
+                            <td><strong>FC Lokomotiv</strong></td>
+                            <td>15</td>
+                            <td>9</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td><strong>31</strong></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>FC Nasaf</td>
+                            <td>15</td>
+                            <td>8</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>FC Metallurg</td>
+                            <td>15</td>
+                            <td>7</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>24</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matches Section -->
+    <section id="matches" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">
+                <i class="fas fa-calendar-alt"></i> <span data-lang="matches-title"></span>Eng yaqin o'yinlar</span>
+            </h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up">
+                    <div class="match-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/60x60/2E7D32/FFFFFF?text=PAK" alt="Pakhtakor" class="team-logo me-3">
+                                <div>
+                                    <h5 class="mb-0">FC Paxtakor</h5>
+                                    <small class="text-muted">1-o'rin</small>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="vs-text">VS</div>
+                                <small class="text-muted">18:00</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="text-end">
+                                    <h5 class="mb-0">FC Bunyodkor</h5>
+                                    <small class="text-muted">2-o'rin</small>
+                                </div>
+                                <img src="https://via.placeholder.com/60x60/1565C0/FFFFFF?text=BUN" alt="Bunyodkor" class="team-logo ms-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="match-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/60x60/FF6B35/FFFFFF?text=LOK" alt="Lokomotiv" class="team-logo me-3">
+                                <div>
+                                    <h5 class="mb-0">FC Lokomotiv</h5>
+                                    <small class="text-muted">3-o'rin</small>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="vs-text">VS</div>
+                                <small class="text-muted">20:00</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="text-end">
+                                    <h5 class="mb-0">FC Nasaf</h5>
+                                    <small class="text-muted">4-o'rin</small>
+                                </div>
+                                <img src="https://via.placeholder.com/60x60/9C27B0/FFFFFF?text=NAS" alt="Nasaf" class="team-logo ms-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="match-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/60x60/4CAF50/FFFFFF?text=MET" alt="Metallurg" class="team-logo me-3">
+                                <div>
+                                    <h5 class="mb-0">FC Metallurg</h5>
+                                    <small class="text-muted">5-o'rin</small>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="vs-text">VS</div>
+                                <small class="text-muted">16:00</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="text-end">
+                                    <h5 class="mb-0">FC So'g'diyona</h5>
+                                    <small class="text-muted">6-o'rin</small>
+                                </div>
+                                <img src="https://via.placeholder.com/60x60/FF5722/FFFFFF?text=SOG" alt="Sogdiyona" class="team-logo ms-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="match-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/60x60/795548/FFFFFF?text=QIZ" alt="Qizilqum" class="team-logo me-3">
+                                <div>
+                                    <h5 class="mb-0">FC Qizilqum</h5>
+                                    <small class="text-muted">7-o'rin</small>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="vs-text">VS</div>
+                                <small class="text-muted">19:00</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="text-end">
+                                    <h5 class="mb-0">FC AGMK</h5>
+                                    <small class="text-muted">8-o'rin</small>
+                                </div>
+                                <img src="https://via.placeholder.com/60x60/607D8B/FFFFFF?text=AGM" alt="AGMK" class="team-logo ms-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="fas fa-futbol"></i> FutbolPro</h4>
+                    <p data-lang="footer-description">Professional futbol musobaqalari platformasi. Eng yaxshi jamoalar, katta sovrinlar va qiziqarli o'yinlar.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h4 data-lang="footer-quick">Tezkor havolalar</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white-50" data-lang="nav-home">Bosh sahifa</a></li>
+                        <li><a href="#competitions" class="text-white-50" data-lang="nav-competitions">Musobaqalar</a></li>
+                        <li><a href="#registration" class="text-white-50" data-lang="nav-registration">Ro'yxatdan o'tish</a></li>
+                        <li><a href="#leaderboard" class="text-white-50" data-lang="nav-leaderboard">Reyting</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h4 data-lang="footer-contact">Bog'lanish</h4>
+                    <p><i class="fas fa-phone"></i> +998901234567</p>
+                    <p><i class="fas fa-envelope"></i> info@futbolpro.uz</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Toshkent shahri</p>
+                </div>
+            </div>
+            <hr class="bg-white-50">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 FutbolPro. <span data-lang="footer-copyright"></span>Barcha huquqlar himoyalangan.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Counter animation
+        function animateCounter() {
+            const counters = document.querySelectorAll('.stats-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current).toLocaleString();
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Start counter animation when section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.section-padding.bg-light');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            
+            const diff = tomorrow - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Language translations
+        const translations = {
+            uz: {
+                'nav-home': 'Bosh sahifa',
+                'nav-competitions': 'Musobaqalar',
+                'nav-registration': "Ro'yxatdan o'tish",
+                'nav-leaderboard': 'Reyting',
+                'nav-matches': "O'yinlar",
+                'hero-title': 'Futbol Musobaqalari',
+                'hero-subtitle': 'Professional futbol turnirlari va katta mukofotlar',
+                'hero-btn': "Musobaqalarni ko'rish",
+                'stats-competitions': 'Musobaqalar',
+                'stats-participants': 'Ishtirokchilar',
+                'stats-prizes': 'Sovrinlar (so\'m)',
+                'stats-matches': "O'yinlar",
+                'competitions-title': 'Faol Musobaqalar',
+                'countdown-text': 'Keyingi musobaqagacha:',
+                'champions-league': 'Chempionlar Ligasi',
+                'champions-prize': '1-o\'rin uchun sovrin',
+                'champions-desc': 'Eng nufuzli futbol musobaqasi. Professional jamoalar uchun.',
+                'champions-teams': '32 ta jamoa',
+                'champions-format': 'Guruh bosqichi + pley-off',
+                'champions-referees': 'Xalqaro hakamlar',
+                'champions-btn': 'Ishtirok etish',
+                'premier-league': 'Oliy Liga',
+                'premier-prize': 'Milliy chempionat',
+                'premier-desc': "O'zbekiston chempionatining eng yuqori divizioni.",
+                'premier-teams': '14 ta jamoa',
+                'premier-rounds': '26 tur',
+                'premier-euro': 'Yevrokubok yo\'llanmasi',
+                'premier-btn': 'Ishtirok etish',
+                'cup-competition': 'Kubok Musobaqasi',
+                'cup-prize': 'Milliy kubok',
+                'cup-desc': 'Barcha divizion jamoalari ishtiroki.',
+                'cup-teams': '64 ta jamoa',
+                'cup-format': 'Knockout tizimi',
+                'cup-surprises': 'Sensatsiyalar kutilmoqda',
+                'cup-btn': 'Ishtirok etish',
+                'registration-title': "Musobaqaga Ro'yxatdan O'tish",
+                'form-firstname': 'Ismingiz',
+                'form-lastname': 'Familiyangiz',
+                'form-phone': 'Telefon raqam',
+                'form-email': 'Email',
+                'form-team': 'Jamoa nomi',
+                'form-competition': 'Musobaqa turi',
+                'form-select': 'Tanlang...',
+                'form-additional': 'Qo\'shimcha ma\'lumot',
+                'form-placeholder': "Jamoa haqida qisqacha ma\'lumot...",
+                'form-submit': "Ro'yxatdan o'tish",
+                'leaderboard-title': 'Reyting Jadvali',
+                'table-rank': 'O\'rin',
+                'table-team': 'Jamoa',
+                'table-matches': "O'yinlar",
+                'table-wins': 'G\'alaba',
+                'table-draw': 'Durang',
+                'table-loss': 'Mag\'lubiyat',
+                'table-points': 'Ball',
+                'matches-title': "Eng yaqin o'yinlar",
+                'footer-description': 'Professional futbol musobaqalari platformasi. Eng yaxshi jamoalar, katta sovrinlar va qiziqarli o\'yinlar.',
+                'footer-quick': 'Tezkor havolalar',
+                'footer-contact': 'Bog\'lanish',
+                'footer-copyright': 'Barcha huquqlar himoyalangan.'
+            },
+            ru: {
+                'nav-home': 'Главная',
+                'nav-competitions': 'Соревнования',
+                'nav-registration': 'Регистрация',
+                'nav-leaderboard': 'Рейтинг',
+                'nav-matches': 'Матчи',
+                'hero-title': 'Футбольные Соревнования',
+                'hero-subtitle': 'Профессиональные футбольные турниры и большие призы',
+                'hero-btn': 'Посмотреть соревнования',
+                'stats-competitions': 'Соревнования',
+                'stats-participants': 'Участники',
+                'stats-prizes': 'Призы (сум)',
+                'stats-matches': 'Матчи',
+                'competitions-title': 'Активные Соревнования',
+                'countdown-text': 'До следующего соревнования:',
+                'champions-league': 'Лига Чемпионов',
+                'champions-prize': 'Приз за 1 место',
+                'champions-desc': 'Самый престижный футбольный турнир. Для профессиональных команд.',
+                'champions-teams': '32 команды',
+                'champions-format': 'Групповой этап + плей-офф',
+                'champions-referees': 'Международные судьи',
+                'champions-btn': 'Участвовать',
+                'premier-league': 'Премьер Лига',
+                'premier-prize': 'Национальный чемпионат',
+                'premier-desc': 'Высший дивизион чемпионата Узбекистана.',
+                'premier-teams': '14 команд',
+                'premier-rounds': '26 туров',
+                'premier-euro': 'Еврокубковые лицензии',
+                'premier-btn': 'Участвовать',
+                'cup-competition': 'Кубок',
+                'cup-prize': 'Национальный кубок',
+                'cup-desc': 'Участие всех дивизионов.',
+                'cup-teams': '64 команды',
+                'cup-format': 'Система на выбывание',
+                'cup-surprises': 'Ожидаются сенсации',
+                'cup-btn': 'Участвовать',
+                'registration-title': 'Регистрация на Соревнование',
+                'form-firstname': 'Имя',
+                'form-lastname': 'Фамилия',
+                'form-phone': 'Телефон',
+                'form-email': 'Email',
+                'form-team': 'Название команды',
+                'form-competition': 'Тип соревнования',
+                'form-select': 'Выберите...',
+                'form-additional': 'Дополнительная информация',
+                'form-placeholder': 'Краткая информация о команде...',
+                'form-submit': 'Зарегистрироваться',
+                'leaderboard-title': 'Таблица Рейтинга',
+                'table-rank': 'Место',
+                'table-team': 'Команда',
+                'table-matches': 'Матчи',
+                'table-wins': 'Победы',
+                'table-draw': 'Ничьи',
+                'table-loss': 'Поражения',
+                'table-points': 'Очки',
+                'matches-title': 'Ближайшие матчи',
+                'footer-description': 'Платформа профессиональных футбольных соревнований. Лучшие команды, большие призы и интересные матчи.',
+                'footer-quick': 'Быстрые ссылки',
+                'footer-contact': 'Контакты',
+                'footer-copyright': 'Все права защищены.'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-competitions': 'Competitions',
+                'nav-registration': 'Registration',
+                'nav-leaderboard': 'Leaderboard',
+                'nav-matches': 'Matches',
+                'hero-title': 'Football Competitions',
+                'hero-subtitle': 'Professional football tournaments and big prizes',
+                'hero-btn': 'View Competitions',
+                'stats-competitions': 'Competitions',
+                'stats-participants': 'Participants',
+                'stats-prizes': 'Prizes (UZS)',
+                'stats-matches': 'Matches',
+                'competitions-title': 'Active Competitions',
+                'countdown-text': 'Until next competition:',
+                'champions-league': 'Champions League',
+                'champions-prize': '1st Place Prize',
+                'champions-desc': 'Most prestigious football tournament. For professional teams.',
+                'champions-teams': '32 teams',
+                'champions-format': 'Group stage + playoff',
+                'champions-referees': 'International referees',
+                'champions-btn': 'Participate',
+                'premier-league': 'Premier League',
+                'premier-prize': 'National Championship',
+                'premier-desc': 'Highest division of Uzbekistan championship.',
+                'premier-teams': '14 teams',
+                'premier-rounds': '26 rounds',
+                'premier-euro': 'Eurocup licenses',
+                'premier-btn': 'Participate',
+                'cup-competition': 'Cup Competition',
+                'cup-prize': 'National Cup',
+                'cup-desc': 'All divisions participation.',
+                'cup-teams': '64 teams',
+                'cup-format': 'Knockout system',
+                'cup-surprises': 'Surprises expected',
+                'cup-btn': 'Participate',
+                'registration-title': 'Competition Registration',
+                'form-firstname': 'First Name',
+                'form-lastname': 'Last Name',
+                'form-phone': 'Phone Number',
+                'form-email': 'Email',
+                'form-team': 'Team Name',
+                'form-competition': 'Competition Type',
+                'form-select': 'Select...',
+                'form-additional': 'Additional Information',
+                'form-placeholder': 'Brief information about team...',
+                'form-submit': 'Register',
+                'leaderboard-title': 'Leaderboard Table',
+                'table-rank': 'Rank',
+                'table-team': 'Team',
+                'table-matches': 'Matches',
+                'table-wins': 'Wins',
+                'table-draw': 'Draw',
+                'table-loss': 'Losses',
+                'table-points': 'Points',
+                'matches-title': 'Upcoming Matches',
+                'footer-description': 'Professional football competitions platform. Best teams, big prizes and interesting matches.',
+                'footer-quick': 'Quick Links',
+                'footer-contact': 'Contact',
+                'footer-copyright': 'All rights reserved.'
+            }
+        };
+
+        // Change language function
+        function changeLanguage(lang) {
+            // Update button states
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update all elements with data-lang attribute
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update page title and lang attribute
+            document.documentElement.lang = lang;
+            const titles = {
+                uz: 'Futbol Musobaqalari - Professional Football Platform',
+                ru: 'Футбольные Соревнования - Профессиональная Платформа',
+                en: 'Football Competitions - Professional Platform'
+            };
+            document.title = titles[lang];
+        }
+
+        // Registration form handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const messages = {
+                uz: "Ro'yxatdan o'tish muvaffaqiyatli amalga oshirildi! Tez orada siz bilan bog'lanamiz.",
+                ru: 'Регистрация успешно завершена! Мы свяжемся с вами в ближайшее время.',
+                en: 'Registration successful! We will contact you soon.'
+            };
+            const currentLang = document.documentElement.lang || 'uz';
+            alert(messages[currentLang]);
+            this.reset();
+        });
+
+        // Competition registration
+        function registerCompetition(competitionName) {
+            const confirmed = confirm(`${competitionName} musobaqasiga ro'yxatdan o'tmoqchimisiz?`);
+            if (confirmed) {
+                scrollToSection('registration');
+                // Pre-fill competition type
+                setTimeout(() => {
+                    const select = document.querySelector('#registrationForm select');
+                    if (select) {
+                        select.value = competitionName.toLowerCase().includes('chempionlar') ? 'chempionlar' :
+                                       competitionName.toLowerCase().includes('oliy') ? 'oliy' : 'kubok';
+                    }
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
